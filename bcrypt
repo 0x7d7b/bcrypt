@@ -1,0 +1,11 @@
+#!/usr/bin/env python3
+
+import sys
+import bcrypt
+
+rounds = 10
+if len(sys.argv) > 1:
+    rounds = int(sys.argv[1])
+
+for to_hash in sys.stdin:
+    print(bcrypt.hashpw(to_hash.encode(), bcrypt.gensalt(rounds=rounds)).decode())
